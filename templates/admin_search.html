@@ -1,0 +1,75 @@
+{% extends "admin_base.html" %} {% block extrahead %}
+<title>MSE ALUMNI - ALUMNUS LIST</title>
+{% endblock %} {% block content %}
+<!-- Star here-->
+<div class="body">
+	<div>
+		<div>
+			<div>
+				<div class="programs">
+					<h2>Alumnus Information</h2>
+					<div class="first">
+						<ul>
+							{% if year or pending %}
+								<li><a href="/admin_search/"> ALL SESSION</a></li>
+							{% else %}
+								<li class="selected"><a
+									href="/admin_search/"> ALL SESSION</a></li>
+							{% endif %}
+							{% if pending %}
+								<li class="selected"><a href="/admin_search?pending"> Pending</a></li>
+							{% else %}
+								<li><a
+									href="/admin_search?pending"> Pending</a></li>
+							{% endif %}
+							{% for y in list_year %} 
+								{% if y == year %}
+								<li class="selected"><a
+									href="/admin_search/?year={{y}}"> {{ y }} SESSION</a></li>
+								{% else %}
+								<li><a href="/admin_search/?year={{y}}">{{ y }} SESSION</a></li> 
+								{% endif %} 
+							{% endfor %}
+						</ul>
+					</div>
+					
+					<div class="application">
+						<h3>Alumnus Information</h3>
+	
+						<table class="table2 table-striped table-bordered" align="center">
+							<form action="/admin_search/" method="get">
+								<input type="text" id="searchbox2" name="text_search">
+								<input type="submit" id="searchbutton" value="searching!">
+							</form>
+							<tr>
+								<th class="font14">Name</th>
+								<th class="font14">Year</th>
+								<th class="font14">Email</th>
+								<th class="font14">Gender</th>
+								<th class="font14">Status</th>
+							</tr>
+							{% for alu in alumnus %}
+							<tr>
+								<td class="font14"><a href="/admin_alumniprofile/?alumni_id={{alu.id}}">{{alu.first_name}} {{alu.last_name}}</td>
+								<td class="font14">{{alu.graduate_date|date:"Y" }}</td>
+								<td class="font14">{{alu.email}}</td>
+								<td class="font14">{{alu.gender}}</td>
+								{% if alu.status == '0' %}
+								<td class="font14">
+									<a id="comfirm" href="/admin_comfirm?id={{alu.id}}&approve=1" style="color:#20C92E;">Approve</a> 
+									<a id="comfirm" href="/admin_comfirm?id={{alu.id}}&approve=0" style="color:#EB2A2A;">Deny</a></td>
+								{% elif alu.status == '1' %}
+								<td class="font14">Normal</td>
+								{% endif %}
+							</tr>
+							{% endfor %}
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end here-->
+
+{% endblock %}

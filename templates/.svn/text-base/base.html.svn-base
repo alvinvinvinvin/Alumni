@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+{% block extrahead %} {% endblock %}
+<link rel="stylesheet" href="{{STATIC_URL}}css/style.css"
+	type="text/css">
+
+<script type="text/javascript" src="{{STATIC_URL}}js/jquery.min.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/csrf.js"></script>
+
+</head>
+</head>
+<body>
+	<div class="header">
+		<div>
+			<a href="/" id="logo"><img src="{{STATIC_URL}}images/logo.png"
+				alt="logo"></a> 
+			{% if request.session.user and request.session.user.type == '0' %}
+
+			<ul>
+				<li><a href="/"><span>H</span>ome</a></li>
+				<li><a href="/admin_search/"><span>A</span>lumus <span>L</span>ist </a></li>
+				<li><a href="/admin_groups/"><span>G</span>roups </a></li>
+				<li><a href="/admin_message/"><span>M</span>ssages </a></li>
+			</ul>
+			{% elif request.session.user %}
+			<ul>
+				<li><a href="/"><span>H</span>ome</a></li>
+				<li><a href="/education_view/"><span>E</span>ducation</a></li>
+				<li><a href="/working_view/"><span>W</span>orking <span>E</span>xperience</a>
+				</li>
+				<li><a href="/search/"><span>S</span>earching</a></li>
+			</ul>
+			{% endif %} 
+			{% if request.session.user  %}
+				{% if request.session.user.type == '0' %}
+					<div>
+						<p>
+							{{request.session.user.account}} || <a id="sign_out"
+								href="/sign_out/">Sign out</a>
+						</p>
+					</div>				
+				{% else %}
+					<div>
+						<p>
+							{{request.session.user.first_name}} || <a id="sign_out"
+								href="/sign_out/">Sign out</a>
+						</p>
+					</div>	
+				{% endif %}
+			{% elif request.get_full_path == "/register/" %} {% else %}
+			<div>
+				<p>
+					<a id="sign_in">Sign In</a>
+				</p>
+			</div>
+			{% endif %}
+
+		</div>
+	</div>
+	<!-- Star here-->
+	{% block content %} {% endblock %}
+	<!-- end here-->
+	<div class="footer">
+		<div>
+			<p>MSE-Alumni &#169; 2014</p>
+		</div>
+	</div>
+</body>
+</html>

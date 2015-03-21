@@ -1,0 +1,154 @@
+{% extends "admin_base.html" %} {% block extrahead %}
+<title>MSE ALUMNI - ALUMNUS GROUP</title>
+{% endblock %} {% block content %}
+<!-- Star here-->
+<div class="body">
+	<div>
+		<div>
+			<div>
+				<div class="programs">
+					<h2>Group Information</h2>
+					<div class="first">
+						<ul>
+							{% if tag == "addgroup" %}
+							<li class="selected"><a href="/admin_groups?addgroup">
+									ADD New Group </a></li> 
+							{% else %}
+							<li><a href="/admin_groups?addgroup"> ADD New Group </a></li> 
+							{% endif %}
+							 
+							{% for g in list_groups %} 
+							{% if g.id == group.id %}
+							<li class="selected"><a href="/admin_groups?group_id={{g.id}}"> {{ g.name }} </a></li> 
+							{% else %}
+							<li><a href="/admin_groups?group_id={{g.id}}">{{ g.name }} </a></li> 
+							{% endif %} 
+							{% endfor %}
+						</ul>
+					</div>
+					{% if tag == "addgroup" %}
+					<!-- Start of adding new group -->
+					<div class="application">
+						<h3>Add New Group</h3>
+						<form action="/admin_groups/" method="post" id="addgroup" style="width:600px">
+							<label id="groupname">Group Name:</label>
+							<input type="text" id="searchbox2" name="groupname">
+							<input type="hidden" id="tag" name="addgroup">
+							<h3>New Group Members</h3>
+							<table class="table2 table-striped table-bordered" align="center">
+								<tr>
+									<th class="font14"></th>
+									<th class="font14">Name</th>
+									<th class="font14">Year</th>
+									<th class="font14">Email</th>
+									<th class="font14">Gender</th>
+								</tr>
+								{% for alu in alumnus %}
+								<tr><td class="font14">
+									<input type="checkbox" name="to_add" value="{{alu.id}}"></td>
+									<td class="font14">{{alu.first_name}} {{alu.last_name}}</td>
+									<td class="font14">{{alu.graduate_date|date:"Y" }}</td>
+									<td class="font14">{{alu.email}}</td>
+									<td class="font14">{{alu.gender}}</td> 
+								</tr>
+								{% endfor %}
+							</table>
+							<input type="button" id="searchbutton" value="Submit!" onclick="ajax_addgroup();">
+							<input type="reset" id="searchbutton" value="Reset!">
+						</form>
+					</div>
+					<!-- End of adding new group -->
+					{% else %}
+					<!-- Group Information -->
+					<div class="application">
+						<table style="border-color: #717A5D;border-style: solid none;border-width: 1px;">
+						<tr><h3>Group Name: {{group.name}}</h3></tr>
+						<tr>
+						<th><h3>Members</h3></th>
+						<th></th>
+						<th><h3>Available</h3></th>
+						</tr>
+						<tr>
+							<td style="vertical-align: top">
+									<div id="group_list">
+									<table class="table2 table-striped table-bordered"
+										align="center">
+										<tr>
+											<th class="font14"></th>
+											<th class="font14">Name</th>
+											<th class="font14">Year</th>
+										</tr>
+										<form action="/admin_groups/" method="post" id="form1">
+										<input type="hidden" id="group_id" name="group_id" value="{{group.id}}">
+										<input type="hidden" id="tag" name="removemembers">
+										{% for alu in group.alumnis.all %}
+										<tr>
+											<td class="font14"><input type="checkbox"
+												name="to_remove" value="{{alu.id}}"></td>
+											<td class="font14">{{alu.first_name}}
+												{{alu.last_name}}</td>
+											<td class="font14">{{alu.graduate_date|date:"Y" }}</td>
+										</tr>
+										{% endfor %}
+										</form>
+									</table>
+									</div>
+								
+							</td>
+							<td>
+							<input type="button" id="button_group" value="--->>" 
+								onclick="document.getElementById('form1').submit();">
+							<br><br>
+							<input type="button" id="button_group" value="<<---"
+								onclick="document.getElementById('form2').submit();">
+							</td>
+								<td style="vertical-align: top;">
+								<div id="group_list">								
+									<table class="table2 table-striped table-bordered"
+										align="center"  style="max-height:350px">
+										<tr>
+											<th class="font14"></th>
+											<th class="font14">Name</th>
+											<th class="font14">Year</th>
+										</tr>
+										<form action="/admin_groups/" method="post" id="form2">
+											<input type="hidden" id="group_id" name="group_id" value="{{group.id}}">
+											<input type="hidden" id="tag" name="addmembers"> 
+											{% for alu in avaliable %}
+										<tr>
+											<td class="font14"><input type="checkbox" name="to_add"
+												value="{{alu.id}}"></td>
+											<td class="font14">{{alu.first_name}} {{alu.last_name}}
+												{{alu.id}}</td>
+											<td class="font14">{{alu.graduate_date|date:"Y" }}</td>
+										</tr>
+										{% endfor %}
+										</form>
+									</table>
+								</td>
+							</tr>
+						</table>
+						<form action="/admin_mail_message/" id="addgroup" style="border:none" method="post">
+							<input type="hidden" name="group_id" value="{{group.id}}">
+							<table>
+								<tr>
+									<td><label id="email_label" for="title"><span>S</span>ubject:</label></td>
+									<td><input name="subject" id="email_title" type="text" id="name"></td>
+								</tr>
+								<tr>
+									<td><label id="email_label" for="email"><span>M</span>essage:</label></td>
+									<td><textarea name="content" id="email_block" cols="30" rows="10"></textarea></td>
+								</tr>
+							</table>
+							<input id="email_button" type="submit" value="Send" id="submit">
+						</form>
+					</div>
+					<!-- End of Group Information -->
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end here-->
+{% endblock %}

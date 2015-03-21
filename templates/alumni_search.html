@@ -1,0 +1,36 @@
+{% extends "alumni_base.html" %} {% block extrahead %}
+<title>MSE ALUMNI - SEARCH</title>
+{% endblock %} {% block content %}
+<div class="body">
+	<div class="register">
+		<div>
+			<div>
+				<div class="search">
+					<h2>Search Other Alumnus!</h2>
+
+					<table class="table table-striped table-bordered" align="center">
+						<form action="/search/" method="post">
+							<input type="text" id="searchbox" name="text_search">
+							<input type="submit" id="searchbutton" value="searching!">
+						</form>
+						<tr>
+							<th>Name</th>
+							<th>Graduate Year</th>
+							<th>Email</th>
+						</tr>
+						{% for alu in alumnus %}
+						<tr>
+							<td>{{alu.first_name}} {{alu.last_name}}</td>
+							<td>{{alu.graduate_date}}</td>
+							<td>{{alu.email}}</td>
+						</tr>
+						{% endfor %}
+					</table>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+{% endblock %}

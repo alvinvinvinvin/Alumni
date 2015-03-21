@@ -1,0 +1,94 @@
+{% extends "base.html" %} {% block extrahead %}
+<title>MSE ALUMNI - Home</title>
+{% endblock %} {% block content %}
+
+<script>
+
+</script>
+
+<!-- Main -->
+<div class="body">
+	<div>
+
+		<div class="featured">
+			<img src="{{STATIC_URL}}images/camping.jpg" alt="camping">
+
+			<div id="login_block" style="display: none">
+				<div>
+					<h3>
+						<span>S</span>ign <span>I</span>n
+					</h3>
+
+					<form id="login_form" action="/sign_in/" method="post">
+						<p>
+							<label>Account:</label> 
+							<input id="login_account_name" type="text" name="account" value="Username" onblur="this.value=!this.value?'Username':this.value;" onfocus="this.select()" onclick="this.value='';">
+							<label>Password:</label>
+							<input id="login_password" type="password" name="password"> 
+							<label>User Type</label> 
+							<select id="user_type" name="type">
+								<option value="0">Admin</option>
+								<option value="1">Alumni</option>
+							</select> 
+							<input type="button" id="submit" value="Sign In!" style="margin-top : 7px" onclick="login_message();">
+						</p>
+					</form>
+					<a href="/register/">REGISTER NOW!</a>
+				</div>
+
+			</div>
+			<div id="register_block">
+				<div>
+					<h3>
+						<span>J</span>OIN <span>U</span>S <span>T</span>ODAY!
+					</h3>
+					<p>Graduation is not the end! Come back and join us !
+						MSE-Alumni is a place where you can find your old mates and
+						contact with each other.</p>
+					<a href="/register/">REGISTER NOW!</a>
+				</div>
+			</div>
+		</div>
+
+		<div>
+			<div>
+				<div>
+					<div class="section">
+						<h2>About MSE-Alumni of UWL</h2>
+						<p>The computer science department at UW-L is the second
+							oldest in the state, behind Madison. The department's emphasis on
+							teaching is evident in small class sizes and professors who give
+							students personal attention. The department has an exciting and
+							challenging curriculum in our undergraduate programs with a large
+							selection of elective courses. The unique 5yr dual degree, BS in
+							Computer Science/Master of Software Engineering, is for those
+							students up to the challenge of getting both degrees in a shorter
+							period of time. The Master of Software Engineering (MSE) degree
+							is the only MSE program within the UW-System. We hope this piques
+							your interest to investigate our programs more closely. Do not
+							hesitate to contact us with any questions. We can be reached at
+							compsci@uwlax.edu.</p>
+
+
+					</div>
+					<div>
+						<h3>UPCOMING EVENTS</h3>
+						<ul>
+						{% for msg in messages %}
+							<li>
+								<div style="height:120px">
+									<span>{{msg.date|date:"Y-m-d" }}</span>
+									<p><a href="{{ msg.docfile.url }}">{{ msg.abstract }}</a></p>
+								</div>
+							</li>
+						{% endfor %}
+						</ul>
+						<a href="/admin_message/">View All</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end Main -->
+{% endblock %}

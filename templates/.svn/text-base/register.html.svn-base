@@ -1,0 +1,76 @@
+{% extends "base.html" %} {% block extrahead %}
+<title>MSE ALUMNI - REGISTER</title>
+{% endblock %} {% block content %}
+<!-- main part -->
+<div class="body">
+	<div class="register">
+		<div>
+			<div>
+				<div class="register">
+					<h2>Join Us TODAY!</h2>
+					<form action="/register/" method="post">
+						<div>
+							<table>
+								<tr>
+									<td><label for="account"><span>A</span>ccount:</label></td>
+									<td><input type="text" id="account" name="account">
+									<p name="message_account" style="display:none;color:red"/></td>
+								</tr>
+								<tr>
+									<td><label for="password"><span>P</span>assword:</label></td>
+									<td><input type="password" id="password" name="password">
+									<p name="message_password" style="display:none;color:red"/></td>
+								</tr>
+								<tr>
+									<td><label for="password_confirm"><span>P</span>assword
+											<span>C</span>onfirm:</label></td>
+									<td><input type="password" id="password_confirm" name="password_confirm">
+									<p name="message_passwordconfirm" style="display:none;color:red"/></td>
+								</tr>
+								<tr>
+									<td><label for="first_name"><span>F</span>irst <span>N</span>ame:</label></td>
+									<td><input type="text" id="first_name" name="first_name">
+									<p name="message_first_name" style="display:none;color:red"/></td>
+								</tr>
+								<tr>
+									<td><label for="last_name"><span>L</span>ast <span>N</span>ame:</label></td>
+									<td><input type="text" id="last_name" name="last_name">
+									<p name="message_last_name" style="display:none;color:red"/></td>
+								</tr>
+
+								<tr>
+									<td><label for="email"><span>E</span>mail <span>A</span>ddress:</label></td>
+									<td><input type="text" id="email" name="email">
+									<p name="message_email" style="display:none;color:red"/></td>
+								</tr>
+								
+								<tr>
+									<td><label for="graduate_date"><span>G</span>raduation
+											<span>D</span>ate:</label></td>
+									<td><input type="month" id="graduate_date" name="graduate_date">
+									<p name="message_graduate_date" style="display:none;color:red"/></td>
+								</tr>
+								<tr>
+									<td><label for="gender"><span>G</span>ender:</label></td>
+									<td>
+										<select id="gender" name="gender">
+											<option value="Male">Male</option>
+											<option value="Female">Female</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+								<td></td>
+								<td><input type="button" id="submit" value="Register" onclick="ajax_register();"></td>
+								</tr>
+							</table>
+							
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end main part -->
+{% endblock %}

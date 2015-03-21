@@ -1,0 +1,110 @@
+{% extends "admin_base.html" %} {% block extrahead %}
+<title>MSE ALUMNI - ALUMNUS PROFILE</title>
+{% endblock %} {% block content %}
+<div class="body">
+	<div class="register">
+		<div>
+			<div>
+				<div class="search">
+					<h2>Alumni Profile</h2>
+					<h3>Brief Information</h3>
+
+					{% if alumni %}
+					<table class="table table-striped table-bordered" align="center"
+						style="max-width: 90%">
+						<tr>
+							<th>Name</th>
+							<th>Graduate Date</th>
+							<th>Email</th>
+							<th>Gender</th>
+							<th>State</th>
+						</tr>
+						<tr>
+							<td>{{alumni.first_name}} {{alumni.last_name}}</td>
+							<td>{{alumni.graduate_date|date:"M Y"}}</td>
+							<td>{{alumni.email}}</td>
+							<td>{{alumni.gender}}</td> {% if alumni.status == 0 %}
+							<td>Pending</td> {% else %}
+							<td>Normal</td> {% endif %}
+						</tr>
+					</table>					
+					{% else %}
+					<h4  style="margin-left: 30px">No Messages.</h4>
+					{% endif %}
+					
+					
+					
+					<h3>Education Information</h3>
+					{% if education %}
+					<table class="table table-striped table-bordered" align="center"
+						style="max-width: 90%">
+						<tr>
+							<th>Major</th>
+							<th>Start Date</th>
+							<th>End Date</th>
+							<th>School</th>
+							<th>City</th>
+							<th>State</th>
+							<th>Zip</th>
+						</tr>
+						{% for e in education %}
+						<tr>
+							<td>{{e.major}}</td>
+							<td>{{e.start_date|date:"M Y"}}</td>
+							<td>{{e.end_date|date:"M Y"}}</td>
+							<td>{{e.school}}</td>
+							<td>{{e.city}}</td>
+							<td>{{e.state}}</td>
+							<td>{{e.zip}}</td>
+						</tr>
+						<tr>
+							<td>Description</td>
+							<td colspan=6>{{e.description}}</td>
+						</tr>
+						{% endfor %}
+					</table>
+					{% else %}
+					<h4  style="margin-left: 30px">No Messages.</h4>
+					{% endif %}
+					
+					<h3>Working Information</h3>
+					{% if working %}
+					<table class="table table-striped table-bordered" align="center"
+						style="max-width: 90%">
+						<tr>
+							<th>Title</th>
+							<th>Start Date</th>
+							<th>End Date</th>
+							<th>Company</th>
+							<th>Address</th>
+							<th>City</th>
+							<th>State</th>
+							<th>Zip</th>
+						</tr>
+						{% for w in working %}
+						<tr>
+							<td>{{w.title}}</td>
+							<td>{{w.start_date|date:"M Y"}}</td>
+							<td>{{w.end_date|date:"M Y"}}</td>
+							<td>{{w.company}}</td>
+							<td>{{w.address}}</td>
+							<td>{{w.city}}</td>
+							<td>{{w.state}}</td>
+							<td>{{w.zip}}</td>
+						</tr>
+						<tr>
+							<td>Description</td>
+							<td colspan=7>{{w.description}}</td>
+						</tr>
+						{% endfor %}
+					</table>
+					{% else %}
+					<h4  style="margin-left: 30px">No Messages.</h4>
+					{% endif %}
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

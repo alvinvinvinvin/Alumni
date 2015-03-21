@@ -1,0 +1,62 @@
+{% extends "education_base.html" %} {% block content_child %}
+<div class="application">
+	<h3>Add New Education</h3>
+	<form action="/education_add/" method="post">
+		<div>
+			<table>
+				<tr>
+					<td><label for="major"><span>M</span>ajor:</label></td>
+					<td><input type="text" id="major" name="major" ></td>
+					<td><h name="message_major" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+				</tr>
+				<tr>
+					<td><label for="start_date"><span>S</span>tart <span>D</span>ate:</label></td>
+					<td><input type="month" id="start_date" name="start_date"></td>
+					<td><h name="message_start_date" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+				</tr>
+				<tr>
+					<td><label for="end_date"><span>E</span>nd <span>D</span>ate:</label></td>
+					<td><input type="month" id="end_date" name="end_date"></td>
+					<td><h name="message_end_date" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+				</tr>
+				<tr>
+					<td><label for="school"><span>S</span>chool:</label></td>
+					<td><input type="text" id="school" name="school"></td>
+					<td><h name="message_school" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+				</tr>
+				<tr>
+					<td><label for="address"><span>A</span>ddress:</label></td>
+					<td><textarea name="address" id="address" cols="30" rows="5"></textarea></td>
+					<td><h name="message_address" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+				</tr>
+				<tr>
+					<td><label for="city"><span>C</span>ity:</label></td>
+					<td><input type="text" id="city" name="city"></td>
+					<td><h name="message_city" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+				</tr>
+				<tr>
+					<td><label for="state"><span>S</span>tate:</label></td>
+					<td><input type="text" id="state" name="state"></td>
+					<td><h name="message_state" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+				</tr>
+				<tr>
+					<td><label for="zip"><span>Z</span>ip:</label></td>
+					<td><input type="text" id="zip" name="zip"></td>
+					<td><h name="message_zip" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+				</tr>
+				<tr>
+					<td><label for="description"><span>D</span>escription:</label></td>
+					<td><textarea id="description" name="description" cols="30"
+							rows="5"></textarea></td>
+					<td><h name="message_description" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+				</tr>
+
+			</table>
+			<tr>
+				<input type="button" value="add education info"
+					id="education-button" onclick="ajax_education()">
+			</tr>
+		</div>
+	</form>
+</div>
+{% endblock %}

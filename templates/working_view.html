@@ -1,0 +1,91 @@
+ {% extends "working_base.html" %} {% block content_child %}
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#working-button").click(function() {
+			$(".text-content").hide();
+			$(":input").show();
+			$(":button").hide();
+			$(":hidden").hide();
+			$(".working-update").show();
+		});
+	});
+</script>
+<div class="application">
+	<h3>working Information</h3>
+	{% if working.id %}
+	<form action="/working_update/" method="post">
+		<div>
+			<table>
+				<tr>
+					<td><label for="title"><span>T</span>itle:</label></td>
+					<td><span class="text-content">{{working.title}}</span> <input
+						type="text" id="title" name="title" value="{{ working.title}}"
+						hidden></td>
+						<td><h name="message_title" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+				</tr>
+				<tr>
+					<td><label for="start_date"><span>S</span>tart <span>D</span>ate:</label></td>
+					<td><span class="text-content">{{working.start_date|date:"M Y" }}</span>
+					<input type="month" id="start_date" name="start_date" value="{{ working.start_date|date:"Y-m" }}" hidden></td>
+					<td><h name="message_start_date" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+				</tr>
+				<tr>
+					<td><label for="end_date"><span>E</span>nd <span>D</span>ate:</label></td>
+					<td><span class="text-content">{{ working.end_date|date:"M Y" }}</span>
+					<input type="month" id="end_date" name="end_date" value="{{ working.end_date|date:"Y-m" }}" hidden></td>
+					<td><h name="message_end_date" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+				</tr>
+				<tr>
+					<td><label for="company"><span>C</span>ompany:</label></td>
+					<td><span class="text-content">{{working.company}}</span>
+					<input type="text" id="company" name="company" value="{{working.company}}" hidden></td>
+					<td><h name="message_company" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+				</tr>
+				<tr>
+					<td><label for="address"><span>A</span>ddress:</label></td>
+					<td><span class="text-content">{{working.address}}</span>
+					<textarea name="address" id="address" cols="30" rows="5" hidden>{{working.address}}</textarea></td>
+					<td><h name="message_address" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+				</tr>
+				<tr>
+					<td><label for="city"><span>C</span>ity:</label></td>
+					<td><span class="text-content">{{working.city}}</span>
+					<input type="text" id="city" name="city" value="{{working.city}}" hidden>
+					<td><h name="message_city" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+				</tr>
+				<tr>
+					<td><label for="state"><span>S</span>tate:</label></td>
+					<td><span class="text-content">{{working.state}}</span>
+					<input type="text" id="state" name="state" value="{{working.state}}" hidden></td>
+					<td><h name="message_state" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+				</tr>
+				<tr>
+					<td><label for="zip"><span>Z</span>ip:</label></td>
+					<td><span class="text-content">{{working.zip}}</span>
+					<input type="text" id="zip" name="zip" value="{{working.zip}}" hidden></td>
+					<td><h name="message_zip" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+				</tr>
+				<tr>
+					<td><label for="description"><span>D</span>escription:</label></td>
+					<td><span class="text-content">{{working.description}}</span>
+					<textarea id="description" name="description" cols="30"
+							rows="5"  hidden>{{working.description}}</textarea></td>
+					<td><h name="message_description" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+				</tr>
+
+			</table>
+			<tr>
+				<input type="hidden" id="working_id" name="working_id" value="{{working.id}}">
+				<input type="button" value="modify working info"
+					id="working-button">	
+				<input  hidden="true" type="button" value="update working info"
+					id="working-button" class="working-update" style="display:none" onclick="ajax_working();">
+
+			</tr>
+		</div>
+	</form>
+	{% endif %}
+</div>
+{% endblock %}
+
+

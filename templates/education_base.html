@@ -1,0 +1,54 @@
+{% extends "alumni_base.html" %} 
+{% block extrahead %}
+<title>MSE ALUMNI - EDUCATION</title>
+{% endblock %} 
+{% block content %} 
+
+<!-- Star here-->
+	
+	<div class="body">
+		<div>
+			<div>
+				<div>
+					<div class="programs">
+						<h2>Education Information</h2>
+						<div class="first">
+							<ul>
+								{% if request.get_full_path == "/education_add/" %}
+								<li class="selected">
+									<a href="/education_add/">
+									Add New Education Info</a>
+								</li>
+								{% else %}
+								<li>
+									<a href="/education_add/">
+									Add New Education Info</a>
+								</li>
+								{% endif %}
+								
+								{% for edu in education_list %}
+								{% if education.id == edu.id %}
+								<li class="selected">
+									<a href="/education_view/?education_id={{edu.id}}">
+									From {{ edu.start_date|date:"Y-m" }} To {{ edu.end_date|date:"Y-m" }}</a>
+								</li>
+								{% else %}
+								<li>
+									<a href="/education_view/?education_id={{edu.id}}">
+									From {{ edu.start_date|date:"Y-m" }} To {{ edu.end_date|date:"Y-m" }}</a>
+								</li>
+								{% endif %}
+								{% endfor %}
+							</ul>
+						</div>
+						{% block content_child %}
+						
+						{% endblock %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end here-->
+
+{% endblock %}

@@ -1,0 +1,91 @@
+ {% extends "education_base.html" %} {% block content_child %}
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#education-button").click(function() {
+			$(".text-content").hide();
+			$(":input").show();
+			$(":button").hide();
+			$(".update-button").show();
+			
+		});
+	});
+</script>
+<div class="application">
+	<h3>Education Information</h3>
+	{% if education.id %}
+	<form action="/education_update/" method="post">
+		<div>
+			<table>
+				<tr>
+					<td><label for="major"><span>M</span>ajor:</label></td>
+					<td><span class="text-content">{{education.major}}</span> <input
+						type="text" id="major" name="major" value="{{ education.major}}"
+						hidden></td>
+						<td><h name="message_major" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+				</tr>
+				<tr>
+					<td><label for="start_date"><span>S</span>tart <span>D</span>ate:</label></td>
+					<td><span class="text-content">{{education.start_date|date:"M Y" }}</span>
+					<input type="month" id="start_date" name="start_date" value="{{ education.start_date|date:"Y-m" }}" hidden></td>
+					<td><h name="message_start_date" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+				</tr>
+				<tr>
+					<td><label for="end_date"><span>E</span>nd <span>D</span>ate:</label></td>
+					<td><span class="text-content">{{ education.end_date|date:"M Y" }}</span>
+					<input type="month" id="end_date" name="end_date" value="{{ education.end_date|date:"Y-m" }}" hidden></td>
+					<td><h name="message_end_date" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+				</tr>
+				<tr>
+					<td><label for="school"><span>S</span>chool:</label></td>
+					<td><span class="text-content">{{education.school}}</span>
+					<input type="text" id="school" name="school" value="{{education.school}}" hidden></td>
+					<td><h name="message_school" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+				</tr>
+				<tr>
+					<td><label for="address"><span>A</span>ddress:</label></td>
+					<td><span class="text-content">{{education.address}}</span>
+					<textarea name="address" id="address" cols="30" rows="5" hidden>{{education.address}}</textarea></td>
+					<td><h name="message_address" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+				</tr>
+				<tr>
+					<td><label for="city"><span>C</span>ity:</label></td>
+					<td><span class="text-content">{{education.city}}</span>
+					<input type="text" id="city" name="city" value="{{education.city}}" hidden>
+					<td><h name="message_city" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+				</tr>
+				<tr>
+					<td><label for="state"><span>S</span>tate:</label></td>
+					<td><span class="text-content">{{education.state}}</span>
+					<input type="text" id="state" name="state" value="{{education.state}}" hidden></td>
+					<td><h name="message_state" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+				</tr>
+				<tr>
+					<td><label for="zip"><span>Z</span>ip:</label></td>
+					<td><span class="text-content">{{education.zip}}</span>
+					<input type="text" id="zip" name="zip" value="{{education.zip}}" hidden></td>
+					<td><h name="message_zip" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+				</tr>
+				<tr>
+					<td><label for="description"><span>D</span>escription:</label></td>
+					<td><span class="text-content">{{education.description}}</span>
+					<textarea id="description" name="description" cols="30"
+							rows="5"  hidden>{{education.description}}</textarea></td>
+					<td><h name="message_description" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+				</tr>
+
+			</table>
+			<tr>
+				<input type="hidden" id="education_id" name="education_id" value="{{education.id}}">
+				<input type="button" value="modify education info"
+					id="education-button"/>	
+				<input  hidden="true" type="button" value="update education info"
+					id="education-button" class="update-button" style="display:none" onclick="ajax_education();"/>
+
+			</tr>
+		</div>
+	</form>
+	{% endif %}
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,40 @@
+10
+
+dir
+16
+svn://www.oksvn.com/MSE_Alumni/Alumni/templates/static
+svn://www.oksvn.com/MSE_Alumni
+
+
+
+2014-04-24T10:56:17.328102Z
+16
+svenchen
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+eb5c564f-3339-8644-812a-9238fa87c387
+
+css
+dir
+
+fonts
+dir
+
+images
+dir
+
+js
+dir
+

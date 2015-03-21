@@ -1,0 +1,54 @@
+{% extends "alumni_base.html" %} 
+{% block extrahead %}
+<title>MSE ALUMNI - WORKING</title>
+{% endblock %} 
+{% block content %} 
+
+<!-- Star here-->
+	
+	<div class="body">
+		<div>
+			<div>
+				<div>
+					<div class="programs">
+						<h2>Working Information</h2>
+						<div class="first">
+							<ul>
+								{% if request.get_full_path == "/working_add/" %}
+								<li class="selected">
+									<a href="/working_add/">
+									Add New Working Info</a>
+								</li>
+								{% else %}
+								<li>
+									<a href="/working_add/">
+									Add New Working Info</a>
+								</li>
+								{% endif %}
+								
+								{% for work in working_list %}
+								{% if working.id == work.id %}
+								<li class="selected">
+									<a href="/working_view/?working_id={{work.id}}">
+									From {{ work.start_date|date:"Y-m" }} To {{ work.end_date|date:"Y-m" }}</a>
+								</li>
+								{% else %}
+								<li>
+									<a href="/working_view/?working_id={{work.id}}">
+									From {{ work.start_date|date:"Y-m" }} To {{ work.end_date|date:"Y-m" }}</a>
+								</li>
+								{% endif %}
+								{% endfor %}
+							</ul>
+						</div>
+						{% block content_child %}
+						
+						{% endblock %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end here-->
+
+{% endblock %}
