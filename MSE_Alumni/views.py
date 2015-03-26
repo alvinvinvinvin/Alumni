@@ -436,7 +436,7 @@ def search_component(text_search):
             condition = reduce(operator.and_, [condition1,condition2])
             print condition
         elif len(years) !=0 and len(others) == 0:
-             condition = reduce(operator.or_, [Q(graduate_date__year=y) for y in years])
+            condition = reduce(operator.or_, [Q(graduate_date__year=y) for y in years])
              
         condition = reduce(operator.and_, [condition,Q(status=1)])
         return Alumni.objects.filter(condition).order_by('graduate_date')

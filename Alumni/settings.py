@@ -3,8 +3,8 @@
 #email
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'uwl.mse@gmail.com'
-EMAIL_HOST_PASSWORD = 'kasi1234' 
+EMAIL_HOST_USER = 'alumni.mse.uwlax@gmail.com'
+EMAIL_HOST_PASSWORD = 'kasimse1234' 
 EMAIL_USE_TLS = True
 
 
@@ -154,7 +154,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
 )
 
-#SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
