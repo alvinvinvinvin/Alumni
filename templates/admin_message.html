@@ -17,12 +17,17 @@
 							<th>Subject</th>
 							<th>Date</th>
 							<th>Content</th>
+							<th>File</th>
 						</tr>
 						{% for msg in messages %}
 						<tr>
 							<td>{{msg.subject}}</td>
 							<td>{{msg.date}}</td>
+							<td>{{ msg.abstract }}</td>
+							<!-- 
 							<td style="word-wrap: break-word"><a href="{{ msg.docfile.url }}">{{ msg.abstract }}</a></td>
+							 -->
+							<td><img src ="{{ msg.docfile.url }}" style="width:304px;height:228px"></td>
 						</tr>
 						{% endfor %}
 						{% else %}
