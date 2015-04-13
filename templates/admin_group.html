@@ -17,13 +17,23 @@
 							<li><a href="/admin_groups?addgroup"> ADD New Group </a></li> 
 							{% endif %}
 							 
-							{% for g in list_groups %} 
-							{% if g.id == group.id %}
-							<li class="selected"><a href="/admin_groups?group_id={{g.id}}"> {{ g.name }} </a></li> 
-							{% else %}
-							<li><a href="/admin_groups?group_id={{g.id}}">{{ g.name }} </a></li> 
-							{% endif %} 
-							{% endfor %}
+<!-- 							{% for g in list_groups %}  -->
+<!-- 							{% if g.id == group.id %} -->
+<!-- 							<li class="selected"><a href="/admin_groups?group_id={{g.id}}"> {{ g.name }} </a></li>  -->
+<!-- 							{% else %} -->
+<!-- 							<li><a href="/admin_groups?group_id={{g.id}}">{{ g.name }} </a></li>  -->
+<!-- 							{% endif %}  -->
+<!-- 							{% endfor %} -->
+							<h3>Existing Groups</h3>
+							<div class="styled-select">
+								<select onchange="this.options[this.selectedIndex].value && (location.href = this.options[this.selectedIndex].value);"
+										style = "width:230px">
+									<option value="">Select A group</option>
+									{% for g in list_groups %} 
+									<option value="/admin_groups?group_id={{g.id}}" >{{ g.name }} </option> 
+									{% endfor %}
+								</select>
+							</div>
 						</ul>
 					</div>
 					{% if tag == "addgroup" %}
