@@ -72,6 +72,7 @@ class Message(models.Model):
 
 class DocumentForm(forms.Form):
     docfile = forms.FileField(
+        required = False,
         label='Select .pdf file',
         help_text='max. 42 megabytes'
     )

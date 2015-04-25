@@ -338,16 +338,27 @@ def admin_view_profile(request):
 
 def admin_message(request):
     if request.method == 'POST':
-        form = DocumentForm(request.POST, request.FILES)
-        if form.is_valid():
+        if request.FILES is None:
+            form = DocumentForm(request.POST)
             new_message = Message(subject=request.POST['subject'],\
                                   date = datetime.now(),\
                                   abstract=request.POST['abstract'],\
-                                  docfile = request.FILES['docfile'])
+                                  docfile = None)
             new_message.save()
 
             # Redirect to the document list after POST
             return redirect('/admin_message/')
+        else:
+            form = DocumentForm(request.POST, request.FILES)
+            if form.is_valid():
+                new_message = Message(subject=request.POST['subject'],\
+                                      date = datetime.now(),\
+                                      abstract=request.POST['abstract'],\
+                                      docfile = request.FILES.get('docfile',False))
+                new_message.save()
+    
+                # Redirect to the document list after POST
+                return redirect('/admin_message/')
     else:
         form = DocumentForm() # A empty, unbound form
 
