@@ -384,7 +384,6 @@ p a:hover {
 	border: 0;
 }
 
-
 .body div div div h3 {
 	color: #756555;
 	font-size: 14px;
@@ -451,10 +450,10 @@ p a:hover {
 .body div div div a {
 	color: #756752;
 	display: block;
-	float: right;
-	font-size: 16px;
+	float: none;
+	font-size: 15px;
 	margin: 0 10px 0 0;
-	line-height: 24px;
+	line-height: 15px;
 	letter-spacing: 0.028em;
 	padding: 9px 0 0;
 	text-decoration: none;
@@ -2086,22 +2085,4 @@ td {
 	overflow: hidden;
 	background: url(new_arrow.png) no-repeat right #ddd;
 	border: 1px solid #ccc;
-}
-
-.forPage{
-    margin: 0;
-	width: 800px; 
-	height: 33px;
-	margin: 0;
-	float: none !important;
-	border: 0;
-}
-
-.forPage div{
-	width: 551px; 
-	height: 33px;
-}
-
-.forPage div a{
-	float: none !important;
 }

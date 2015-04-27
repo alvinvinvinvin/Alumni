@@ -36,7 +36,7 @@
 					<div class="application">
 						<h3>Alumnus Information</h3>
 						{% load pagination_tags %}
-						{% autopaginate alumnus 10 %} 
+						{% autopaginate alumnus 10 %}
 						<table class="table2 table-striped table-bordered" align="center">
 							<form action="/admin_search/" method="get">
 								<input type="text" id="searchbox2" name="text_search">
@@ -52,9 +52,9 @@
 							{% for alu in alumnus %}
 							<tr>
 								<td class="font14"><a href="/admin_alumniprofile/?alumni_id={{alu.id}}">{{alu.first_name}} {{alu.last_name}}</td>
-								<td class="font14">{{alu.graduate_date|date:"Y" }}</td>
-								<td class="font14">{{alu.email}}</td>
-								<td class="font14">{{alu.gender}}</td>
+								<td class="font14"><a href="/admin_alumniprofile/?alumni_id={{alu.id}}">{{alu.graduate_date|date:"Y" }}</td>
+								<td class="font14"><a href="/admin_alumniprofile/?alumni_id={{alu.id}}">{{alu.email}}</td>
+								<td class="font14"><a href="/admin_alumniprofile/?alumni_id={{alu.id}}">{{alu.gender}}</td>
 								{% if alu.status == '0' %}
 								<td class="font14">
 									<a id="comfirm" href="/admin_comfirm?id={{alu.id}}&approve=1" style="color:#20C92E;">Approve</a> 
@@ -65,7 +65,6 @@
 							</tr>
 							{% endfor %}
 						</table>
-						
 						<div align="center" style="width: 551px; height: 30px; min-height:30px; border-color: #000000">{% paginate %}</div>
 						<br>
 					</div>
