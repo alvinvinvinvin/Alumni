@@ -450,7 +450,7 @@ p a:hover {
 .body div div div a {
 	color: #756752;
 	display: block;
-	float: none;
+	float: right;
 	font-size: 15px;
 	margin: 0 10px 0 0;
 	line-height: 15px;

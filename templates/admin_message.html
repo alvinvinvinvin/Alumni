@@ -30,8 +30,8 @@
 							{% if msg.docfile.url == '/media/False' %}
 							<td>No Image</td>
 							 {% else %}
-							<td><img src="{{ msg.docfile.url }}"
-								style="width: 304px; height: 228px"></td> 
+							<td><a href="{{ msg.docfile.url }}"><img src="{{ msg.docfile.url }}"
+								style="width: 100px; height: 100px"></a></td> 
 							{% endif %}
 						</tr>
 						{% endfor %} 
@@ -41,7 +41,7 @@
 
 
 					</table>
-					<div align="center" style="width: 800px; height: 30px;">{% paginate %}</div>
+					<div align="center" style="width: 800px; height: 90px;">{% paginate %}</div>
 
 					<br>
 					<div align="center" style="width: 804px">
