@@ -78,7 +78,11 @@
 							<li>
 								<div style="height:120px">
 									<span>{{msg.date|date:"m-d-Y" }}</span>
+									{% if msg.docfile.url == '/media/False' %}
+									<p>{{ msg.abstract }}</p>
+									{% else %}
 									<p><a href="{{ msg.docfile.url }}">{{ msg.abstract }}</a></p>
+									{% endif %}
 								</div>
 							</li>
 						{% endfor %}
