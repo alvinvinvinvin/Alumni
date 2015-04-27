@@ -77,7 +77,7 @@
 						{% for msg in messages %}
 							<li>
 								<div style="height:120px">
-									<span>{{msg.date|date:"Y-m-d" }}</span>
+									<span>{{msg.date|date:"m-d-Y" }}</span>
 									<p><a href="{{ msg.docfile.url }}">{{ msg.abstract }}</a></p>
 								</div>
 							</li>

@@ -1,17 +1,17 @@
 {% extends "admin_base.html" %} {% block extrahead %}
 <title>MSE ALUMNI - ALUMNUS MESSAGE</title>
 {% endblock %} {% block content %}
+
 <div class="body">
 	<div class="register">
 		<div>
 			<div>
 				<div class="search">
 					<h2>Message List</h2>
-					
+
 					<table class="table table-striped table-bordered" align="center">
-
-						
-
+						{% load pagination_tags %}
+						{% autopaginate messages 5 %} 
 						{% if messages %}
 						<tr>
 							<th>Subject</th>
@@ -27,37 +27,51 @@
 							<!-- 
 							<td style="word-wrap: break-word"><a href="{{ msg.docfile.url }}">{{ msg.abstract }}</a></td>
 							 -->
-							<td><img src ="{{ msg.docfile.url }}" style="width:304px;height:228px"></td>
+							{% if msg.docfile.url == '/media/False' %}
+							<td>No Image</td>
+							 {% else %}
+							<td><img src="{{ msg.docfile.url }}"
+								style="width: 304px; height: 228px"></td> 
+							{% endif %}
 						</tr>
-						{% endfor %}
+						{% endfor %} 
 						{% else %}
 						<p>No Messages.</p>
 						{% endif %}
-					
-					
+
+
 					</table>
-					{% if request.session.user and request.session.user.type == '0' %}
-					<form action="/admin_message/" method="post" enctype="multipart/form-data">
-						<table>
-							<tr>
-								<td><label id="email_label" for="title"><span>S</span>ubject:</label></td>
-								<td><input name="subject" id="email_title"type="text" ></td>
-							</tr>
-							<tr>
-								<td><label id="email_label" for="email"><span>A</span>bstract:</label></td>
-								<td><textarea name="abstract" id="email_block" cols="30" rows="10"></textarea></td>
-							</tr>
-							<tr>
-							<td></td>
-								<td><input id="id_docfile" name="docfile" type="file"></td>
-							</tr>
-							<tr>
-							<td></td>
-								<td><input id="email_button" type="submit" value="Send" id="submit"></td>
-							</tr>
-						</table>
-					</form>
-					{% endif %}
+					<div align="center" style="width: 800px; height: 30px;">{% paginate %}</div>
+
+					<br>
+					<div align="center" style="width: 804px">
+						{% if request.session.user and request.session.user.type == '0' %}
+						<form action="/admin_message/" method="post"
+							enctype="multipart/form-data">
+							<table align="center">
+								<tr>
+									<td><label id="email_label" for="title"><span>S</span>ubject:</label></td>
+									<td><input name="subject" id="email_title" type="text"></td>
+								</tr>
+								<tr>
+									<td><label id="email_label" for="email"><span>A</span>bstract:</label></td>
+									<td><textarea name="abstract" id="email_block" cols="30"
+											rows="10"></textarea></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td><input id="id_docfile" name="docfile" type="file"></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td><input id="email_button" type="submit" value="Send"
+										id="submit"></td>
+								</tr>
+							</table>
+						</form>
+						{% endif %}
+					</div>
+
 				</div>
 			</div>
 		</div>

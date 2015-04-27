@@ -384,6 +384,7 @@ p a:hover {
 	border: 0;
 }
 
+
 .body div div div h3 {
 	color: #756555;
 	font-size: 14px;
@@ -2085,4 +2086,22 @@ td {
 	overflow: hidden;
 	background: url(new_arrow.png) no-repeat right #ddd;
 	border: 1px solid #ccc;
+}
+
+.forPage{
+    margin: 0;
+	width: 800px; 
+	height: 33px;
+	margin: 0;
+	float: none !important;
+	border: 0;
+}
+
+.forPage div{
+	width: 551px; 
+	height: 33px;
+}
+
+.forPage div a{
+	float: none !important;
 }

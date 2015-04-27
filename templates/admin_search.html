@@ -35,7 +35,8 @@
 					
 					<div class="application">
 						<h3>Alumnus Information</h3>
-	
+						{% load pagination_tags %}
+						{% autopaginate alumnus 10 %} 
 						<table class="table2 table-striped table-bordered" align="center">
 							<form action="/admin_search/" method="get">
 								<input type="text" id="searchbox2" name="text_search">
@@ -64,6 +65,9 @@
 							</tr>
 							{% endfor %}
 						</table>
+						
+						<div align="center" style="width: 551px; height: 30px; min-height:30px; border-color: #000000">{% paginate %}</div>
+						<br>
 					</div>
 				</div>
 			</div>
