@@ -1,6 +1,8 @@
 from django import forms
 from django.db import models
 
+class Attachment(models.Model):
+    file = models.FileField(upload_to='documents/%Y/%m/%d', blank=True, null= True)
 
 # Create your models here.
 class User(models.Model):

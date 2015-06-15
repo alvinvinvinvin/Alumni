@@ -12,7 +12,19 @@ from django.shortcuts import redirect, render, render_to_response
 from django.template.context import RequestContext
 
 from MSE_Alumni.models import *
+from django.views.generic.edit import FormView
+from .forms import UploadForm
+from .models import Attachment
 
+class UploadView(FormView):
+    template_name = 'form.html'
+    form_class = UploadForm
+    success_url = '/done/'
+
+    def form_valid(self, form):
+        for each in form.cleaned_data['attachments']:
+            Attachment.objects.create(file=each)
+        return super(UploadView, self).form_valid(form)
 
 def home(request):
     #send_mail('Subject here', 'Here is the message.','uwl.mse@gmail.com',['svenchen90@gmail.com','chen.gong@uwlax.edu'], fail_silently=False)
@@ -354,7 +366,7 @@ def admin_message(request):
                 new_message = Message(subject=request.POST['subject'],\
                                       date = datetime.now(),\
                                       abstract=request.POST['abstract'],\
-                                      docfile = request.FILES.get('docfile',False))
+                                      docfile = request.FILES.getlist('docfile',False))
                 new_message.save()
     
                 # Redirect to the document list after POST
