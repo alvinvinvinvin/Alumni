@@ -15,6 +15,13 @@ from MSE_Alumni.models import *
 from django.views.generic.edit import FormView
 from .forms import UploadForm
 from .models import Attachment
+from multiuploader.forms import MultiUploadForm
+
+def my_view(request):
+    context = {
+        'uploadForm':MultiUploadForm()
+    }
+    return render_to_response('admin_message.html', context=context)
 
 class UploadView(FormView):
     template_name = 'form.html'
@@ -363,10 +370,30 @@ def admin_message(request):
         else:
             form = DocumentForm(request.POST, request.FILES)
             if form.is_valid():
-                new_message = Message(subject=request.POST['subject'],\
+                docfiles = request.FILES.getlist('docfile',False)
+                print(len(docfiles))
+                if len(docfiles) == 0:
+                    new_message = Message(subject=request.POST['subject'],\
+                                      date = datetime.now(),\
+                                      abstract=request.POST['abstract'])
+                elif len(docfiles) == 1:
+                    new_message = Message(subject=request.POST['subject'],\
                                       date = datetime.now(),\
                                       abstract=request.POST['abstract'],\
-                                      docfile = request.FILES.getlist('docfile',False))
+                                      docfile1 = docfiles[0])
+                elif len(docfiles) == 2:
+                    new_message = Message(subject=request.POST['subject'],\
+                                      date = datetime.now(),\
+                                      abstract=request.POST['abstract'],\
+                                      docfile1 = docfiles[0],\
+                                      docfile2 = docfiles[1])
+                elif len(docfiles) == 3:
+                    new_message = Message(subject=request.POST['subject'],\
+                                      date = datetime.now(),\
+                                      abstract=request.POST['abstract'],\
+                                      docfile1 = docfiles[0],\
+                                      docfile2 = docfiles[1],\
+                                      docfile3 = docfiles[2])
                 new_message.save()
     
                 # Redirect to the document list after POST

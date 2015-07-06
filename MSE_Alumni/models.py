@@ -67,7 +67,9 @@ class Message(models.Model):
     subject = models.CharField(max_length = 45, unique = True)
     date = models.DateTimeField()
     abstract = models.TextField()
-    docfile = models.FileField(upload_to='documents/%Y/%m/%d', blank=True, null= True)
+    docfile1 = models.FileField(upload_to='documents/%Y/%m/%d', blank=True, null= True)
+    docfile2 = models.FileField(upload_to='documents/%Y/%m/%d', blank=True, null= True)
+    docfile3 = models.FileField(upload_to='documents/%Y/%m/%d', blank=True, null= True)
     def __unicode__(self):
         return self.subject
 

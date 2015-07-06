@@ -33,6 +33,7 @@ urlpatterns = patterns('',
     
     (r'^ajax_signin/$', 'MSE_Alumni.views.ajax_signin'),
     (r'^ajax_register/$', 'MSE_Alumni.views.ajax_register'),  
+    
     # Examples:
     # url(r'^$', 'Alumni.views.home', name='home'),
     # url(r'^Alumni/', include('Alumni.foo.urls')),

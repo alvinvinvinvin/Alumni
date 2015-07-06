@@ -27,10 +27,10 @@
 							<!-- 
 							<td style="word-wrap: break-word"><a href="{{ msg.docfile.url }}">{{ msg.abstract }}</a></td>
 							 -->
-							{% if msg.docfile.url == '/media/False' %}
+							{% if msg.docfile1.url == '/media/False' %}
 							<td>No Image</td>
 							 {% else %}
-							<td><a href="{{ msg.docfile.url }}"><img src="{{ msg.docfile.url }}"
+							<td><a href="{{ msg.docfile1.url }}"><img src="{{ msg.docfile1.url }}"
 								style="width: 100px; height: 100px"></a></td> 
 							{% endif %}
 						</tr>
@@ -46,8 +46,10 @@
 					<br>
 					<div align="center" style="width: 804px">
 						{% if request.session.user and request.session.user.type == '0' %}
+
 						<form action="/admin_message/" method="post"
 							enctype="multipart/form-data">
+
 							<table align="center">
 								<tr>
 									<td><label id="email_label" for="title"><span>S</span>ubject:</label></td>
@@ -60,12 +62,20 @@
 								</tr>
 								<tr>
 									<td></td>
-									<td><input id="id_docfile" name="docfile" type="file" multiple></td>
+									<td><input name="docfile" type="file" ></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td><input  name="docfile" type="file" ></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td><input  name="docfile" type="file" ></td>
 								</tr>
 								<tr>
 									<td></td>
 									<td><input id="email_button" type="submit" value="Send"
-										id="submit"></td>
+										id="submit" multiple></td>
 								</tr>
 							</table>
 						</form>
