@@ -13,25 +13,8 @@ from django.template.context import RequestContext
 
 from MSE_Alumni.models import *
 from django.views.generic.edit import FormView
-from .forms import UploadForm
 from .models import Attachment
-from multiuploader.forms import MultiUploadForm
 
-def my_view(request):
-    context = {
-        'uploadForm':MultiUploadForm()
-    }
-    return render_to_response('admin_message.html', context=context)
-
-class UploadView(FormView):
-    template_name = 'form.html'
-    form_class = UploadForm
-    success_url = '/done/'
-
-    def form_valid(self, form):
-        for each in form.cleaned_data['attachments']:
-            Attachment.objects.create(file=each)
-        return super(UploadView, self).form_valid(form)
 
 def home(request):
     #send_mail('Subject here', 'Here is the message.','uwl.mse@gmail.com',['svenchen90@gmail.com','chen.gong@uwlax.edu'], fail_silently=False)

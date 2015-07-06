@@ -152,9 +152,9 @@ INSTALLED_APPS = (
      'django.contrib.admin',
      'linaro_django_pagination',
      'MSE_Alumni',
-     'south',
+     #'south',
      #'multiuploader',
-     'uploadify',
+     #'uploadify',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
