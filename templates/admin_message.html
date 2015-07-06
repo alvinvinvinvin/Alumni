@@ -23,24 +23,37 @@
 						<tr>
 							<td>{{msg.subject}}</td>
 							<td>{{msg.date}}</td>
-							<td>{{ msg.abstract }}</td>
-							<!-- 
-							<td style="word-wrap: break-word"><a href="{{ msg.docfile.url }}">{{ msg.abstract }}</a></td>
-							 -->
-							{% if msg.docfile1.url == '/media/False' %}
-							<td>No Image</td>
-							 {% else %}
-							<td><a href="{{ msg.docfile1.url }}"><img src="{{ msg.docfile1.url }}"
-								style="width: 100px; height: 100px"></a></td> 
-							{% endif %}
+							<td>{{ msg.abstract }}</td>							
+							<td>
+								{% if msg.docfile1 %}
+								<a href="{{ msg.docfile1.url }}"><img src="{{ msg.docfile1.url }}"
+								style="width: 90px; height: 100px"></a>
+								{% else %}
+<!-- 								<img src="/media/images/defaultImage/imageNotFound.jpg" -->
+<!-- 								style="width: 90px; height: 100px"> -->
+								{% endif %}
+								{% if msg.docfile2 %}
+								<a href="{{ msg.docfile2.url }}"><img src="{{ msg.docfile2.url }}"
+								style="width: 90px; height: 100px"></a>
+								{% else %}
+<!-- 								<img src="/media/images/defaultImage/imageNotFound.jpg" -->
+<!-- 								style="width: 90px; height: 100px"> -->
+								{% endif %}
+								{% if msg.docfile3 %}
+								<a href="{{ msg.docfile3.url }}"><img src="{{ msg.docfile3.url }}"
+								style="width: 90px; height: 100px"></a>
+								{% else %}
+<!-- 								<img src="/media/images/defaultImage/imageNotFound.jpg" -->
+<!-- 								style="width: 90px; height: 100px"> -->
+								{% endif %}
+							</td> 
 						</tr>
 						{% endfor %} 
 						{% else %}
 						<p>No Messages.</p>
 						{% endif %}
-
-
 					</table>
+					
 					<div align="center" style="width: 800px; height: 90px;">{% paginate %}</div>
 
 					<br>

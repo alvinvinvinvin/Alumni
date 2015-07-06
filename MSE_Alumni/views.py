@@ -371,8 +371,7 @@ def admin_message(request):
             form = DocumentForm(request.POST, request.FILES)
             if form.is_valid():
                 docfiles = request.FILES.getlist('docfile',False)
-                print(len(docfiles))
-                if len(docfiles) == 0:
+                if not docfiles:
                     new_message = Message(subject=request.POST['subject'],\
                                       date = datetime.now(),\
                                       abstract=request.POST['abstract'])
@@ -395,8 +394,14 @@ def admin_message(request):
                                       docfile2 = docfiles[1],\
                                       docfile3 = docfiles[2])
                 new_message.save()
-    
+                    
                 # Redirect to the document list after POST
+                return redirect('/admin_message/')
+            else:
+                new_message = Message(subject=request.POST['subject'],\
+                                      date = datetime.now(),\
+                                      abstract=request.POST['abstract'])
+                new_message.save()
                 return redirect('/admin_message/')
     else:
         form = DocumentForm() # A empty, unbound form
