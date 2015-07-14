@@ -14,6 +14,7 @@ from django.template.context import RequestContext
 from MSE_Alumni.models import *
 from django.views.generic.edit import FormView
 from .models import Attachment
+from django.views.generic import ListView
 
 
 def home(request):

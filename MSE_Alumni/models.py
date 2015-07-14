@@ -1,5 +1,6 @@
 from django import forms
 from django.db import models
+#from linaro_django_pagination.templatetags.pagination_tags import paginate
 
 class Attachment(models.Model):
     file = models.FileField(upload_to='documents/%Y/%m/%d', blank=True, null= True)
@@ -22,6 +23,7 @@ class Alumni(models.Model):
     gender = models.CharField(max_length = 45)
     picture = models.ImageField(upload_to = "images/", blank =True, null = True)
     status = models.CharField(max_length = 10)
+    paginate_by = 10
     
     def __unicode__(self):
         return self.first_name + " " + self.last_name
@@ -59,7 +61,7 @@ class Working_Exp(models.Model):
 class Group(models.Model):
     name = models.CharField(max_length = 45, unique = True)
     alumnis = models.ManyToManyField(Alumni)
-    
+    paginate_by = 10
     def __unicode__(self):
         return self.name
     
@@ -70,6 +72,7 @@ class Message(models.Model):
     docfile1 = models.FileField(upload_to='documents/%Y/%m/%d', blank=True, null= True)
     docfile2 = models.FileField(upload_to='documents/%Y/%m/%d', blank=True, null= True)
     docfile3 = models.FileField(upload_to='documents/%Y/%m/%d', blank=True, null= True)
+    paginate_by = 5
     def __unicode__(self):
         return self.subject
 
