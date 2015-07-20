@@ -382,6 +382,9 @@ p a:hover {
 	width: 290px;
 	float: left !important;
 	border: 0;
+	height: inherit;
+  	align: center;
+  	align-items: center;
 }
 
 .body div div div h3 {
@@ -2092,6 +2095,10 @@ td {
     background: #f2f2f2;
     padding: 20px;
     margin-bottom: 20px;
+    width: 500px;
+    height: inherit;
+  	align-self: center;
+  	align-items: center;
 }
 
 .page {
