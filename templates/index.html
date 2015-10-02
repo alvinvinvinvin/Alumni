@@ -12,7 +12,21 @@
 
 		<div class="featured">
 			<img src="{{STATIC_URL}}images/camping.jpg" alt="camping">
-
+			
+			{% if request.session.user  %}
+			{% else %}
+			<div id="register_block">
+				<div>
+					<h3>
+						<span>J</span>OIN <span>U</span>S <span>T</span>ODAY!
+					</h3>
+					<p>Graduation is not the end! Come back and join us !
+						MSE-Alumni is a place where you can find your old mates and
+						contact with each other.</p>
+					<a href="/register/">REGISTER NOW!</a>
+				</div>
+			</div>
+			
 			<div id="login_block" style="display: none">
 				<div>
 					<h3>
@@ -35,19 +49,9 @@
 					</form>
 					<a href="/register/">REGISTER NOW!</a>
 				</div>
-
 			</div>
-			<div id="register_block">
-				<div>
-					<h3>
-						<span>J</span>OIN <span>U</span>S <span>T</span>ODAY!
-					</h3>
-					<p>Graduation is not the end! Come back and join us !
-						MSE-Alumni is a place where you can find your old mates and
-						contact with each other.</p>
-					<a href="/register/">REGISTER NOW!</a>
-				</div>
-			</div>
+			
+			{% endif %}
 		</div>
 
 		<div>

@@ -3,8 +3,8 @@
 #email
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'alvinchen4test@gmail.com'
-EMAIL_HOST_PASSWORD = '8078979ch' 
+EMAIL_HOST_USER = 'msealum@uwlax.edu'
+EMAIL_HOST_PASSWORD = 'UWL@2015' 
 EMAIL_USE_TLS = True
 
 
