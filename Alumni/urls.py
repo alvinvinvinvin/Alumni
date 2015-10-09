@@ -29,6 +29,7 @@ urlpatterns = patterns('',
     (r'^admin_groups/', 'MSE_Alumni.views.admin_groups'),
     (r'^admin_mail_message/', 'MSE_Alumni.views.admin_mail_message'),
     (r'^admin_message/$', 'MSE_Alumni.views.admin_message'),
+    (r'^admin_account/$', 'MSE_Alumni.views.admin_account'),
     (r'^admin_alumniprofile/$', 'MSE_Alumni.views.admin_view_profile'),
     
     (r'^ajax_signin/$', 'MSE_Alumni.views.ajax_signin'),

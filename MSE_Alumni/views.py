@@ -396,6 +396,37 @@ def admin_message(request):
     # Render list page with the documents and the form
     return render(request, 'admin_message.html', {'messages': messages, 'form': form})
 
+#Admin account management
+def admin_account(request):
+    if 'user' in request.session and hasattr(request.session['user'], 'type'):
+        accounts = User.objects.all().order_by('first_name')
+        
+        return render(request, 'admin_account.html', {'accounts':accounts})
+    else:
+        return redirect('/')
+    
+#Add new admin account
+def admin_account_add(request):
+    if 'user' in request.session and hasattr(request.session['user'], 'user'):
+        context={}
+        context['education_list'] = Education_Exp.objects.filter(alumni_id = request.session['user'].id)
+        if request.method == 'GET':
+            return render(request,'education_add.html',context)
+        else:
+            new_education = Education_Exp(alumni=request.session['user'],\
+                                          major=request.POST['major'],\
+                                          start_date=request.POST['start_date']+'-01',\
+                                          end_date=request.POST['end_date']+'-01',\
+                                          school=request.POST['school'],\
+                                          address=request.POST['address'],\
+                                          city=request.POST['city'],\
+                                          state=request.POST['state'],\
+                                          zip=request.POST['zip'],\
+                                          description=request.POST['description'])
+            new_education.save()
+            return redirect('/education_view/')
+    else:
+        return redirect('/')
 #AJAX
 def ajax_signin(request):
     response=HttpResponse()  

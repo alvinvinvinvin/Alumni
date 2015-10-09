@@ -1,0 +1,57 @@
+{% extends "admin_base.html" %} {% block extrahead %}
+<title>MSE ALUMNI - Admin accounts management</title>
+{% endblock %} {% block content %}
+<!-- Star here-->
+<div class="body">
+	<div>
+		<div>
+			<div>
+				<div class="programs">
+					<h2>Admin accounts management</h2>
+					<div class="first">
+						<ul>			
+							<li><a href="/admin_accounts?addaccount"> ADD New Admin </a></li> 
+							<li><a href="/admin_accounts?editaccount"> Edit An Account </a></li> 
+							<li><a href="/admin_accounts?deleteaccount"> Delete An Account </a></li> 
+						</ul>
+					</div>
+					
+					<div class="application">
+						<h3>Admin accounts</h3>
+						<form action="/admin_account_search/" method="get">
+								<input type="text" id="searchbox2" name="text_search">
+								<input type="submit" id="searchbutton" value="search">
+						</form>
+						
+						<table class="table table-striped table-bordered" align="center">
+						{% load pagination_tags %}
+						{% autopaginate accounts 5 %} 
+						{% if accounts %}
+						<tr>
+							<th></th>
+							<th>Account</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+						</tr>
+						
+						{% for account in accounts %}
+						<tr id='{{ account.account }}'>
+							<td><input type="checkbox"  id="chk_{{ account.account }}"></td>
+							<td>{{ account.account }}</td>
+							<td>{{ account.first_name }}</td>
+							<td>{{ account.last_name }}</td>
+						</tr>
+						{% endfor %}
+						{% else %}
+						<p>No Account.</p>
+						{% endif %}
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end here-->
+
+{% endblock %}
