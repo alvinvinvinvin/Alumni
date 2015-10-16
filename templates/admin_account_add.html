@@ -8,7 +8,7 @@
 			<div>
 				<div class="programs">
 					<h2>Add Admin Account</h2>
-					
+
 					<div class="application">
 						<h3>Add Admin Account</h3>
 						<form action="/admin_account_add/" method="post">
@@ -16,36 +16,45 @@
 								<table>
 									<tr>
 										<td><label for="account"><span>A</span>ccount:</label></td>
-										<td><input type="text" id="account" name="account" ></td>
-										<td><h name="message_account" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+										<td><input type="text" id="account" name="account"></td>
+										<td><h name="message_account"
+												style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal" /></td>
 									</tr>
 									<tr>
 										<td><label for="passwordone"><span>P</span>assword:</label></td>
-										<td><input type="text" id="passwordone" name="passwordone"></td>
-										<td><h name="message_passwordone" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+										<td><input type="text" id="passwordone"
+											name="passwordone"></td>
+										<td><h name="message_passwordone"
+												style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal" /></td>
 									</tr>
 									<tr>
-										<td><label for="passwordtwo"><span>P</span>assword again:</label></td>
-										<td><input type="text" id="passwordtwo" name="passwordtwo"></td>
-										<td><h name="message_passwordtwo" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+										<td><label for="passwordtwo"><span>P</span>assword
+												again:</label></td>
+										<td><input type="text" id="passwordtwo"
+											name="passwordtwo"></td>
+										<td><h name="message_passwordtwo"
+												style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal" /></td>
 									</tr>
 									<tr>
-										<td><label for="first_name"><span>F</span>irst name:</label></td>
+										<td><label for="first_name"><span>F</span>irst
+												name:</label></td>
 										<td><input type="text" id="first_name" name="first_name"></td>
-										<td><h name="message_first_name" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+										<td><h name="message_first_name"
+												style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal" /></td>
 									</tr>
 									<tr>
-										<td><label for="last_name"><span>L</span>ast name:</label></td>
+										<td><label for="last_name"><span>L</span>ast
+												name:</label></td>
 										<td><input type="text" id="last_name" name="last_name"></td>
-										<td><h name="message_last_name" style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal"/></td>
+										<td><h name="message_last_name"
+												style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal" /></td>
 									</tr>
 									<tr>
 								</table>
-								
-								<tr>
-									<input type="button" value="add admin_account"
-										id="admin-add-button" onclick="ajax_admin_account()">
-								</tr>
+								<input type="button" value="Add" id="searchbutton"
+									onclick="ajax_admin_account()"> 
+								<input type="button"
+									value="Cancel" id="searchbutton">
 							</div>
 						</form>
 					</div>

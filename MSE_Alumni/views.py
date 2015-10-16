@@ -15,6 +15,7 @@ from MSE_Alumni.models import *
 from django.views.generic.edit import FormView
 from .models import Attachment
 from django.views.generic import ListView
+from django.core.context_processors import request
 
 
 def home(request):
@@ -399,7 +400,7 @@ def admin_message(request):
 #Admin account management
 def admin_account(request):
     if 'user' in request.session and hasattr(request.session['user'], 'type'):
-        accounts = User.objects.all().order_by('first_name')
+        accounts = User.objects.filter(type = '0').order_by('first_name')
         
         return render(request, 'admin_account.html', {'accounts':accounts})
     else:
@@ -407,26 +408,25 @@ def admin_account(request):
     
 #Add new admin account
 def admin_account_add(request):
-    if 'user' in request.session and hasattr(request.session['user'], 'user'):
-        context={}
-        context['education_list'] = Education_Exp.objects.filter(alumni_id = request.session['user'].id)
-        if request.method == 'GET':
-            return render(request,'education_add.html',context)
+    if 'user' in request.session and hasattr(request.session['user'], 'type'):
+        if request.method == 'POST':
+            new_account = User(account = request.POST['account'],\
+                                            password = request.POST['password'],\
+                                            first_name = request.POST['first_name'],\
+                                            last_name = request.POST['last_name'])
+            new_account.save()
+            return redirect('/admin_account/')
         else:
-            new_education = Education_Exp(alumni=request.session['user'],\
-                                          major=request.POST['major'],\
-                                          start_date=request.POST['start_date']+'-01',\
-                                          end_date=request.POST['end_date']+'-01',\
-                                          school=request.POST['school'],\
-                                          address=request.POST['address'],\
-                                          city=request.POST['city'],\
-                                          state=request.POST['state'],\
-                                          zip=request.POST['zip'],\
-                                          description=request.POST['description'])
-            new_education.save()
-            return redirect('/education_view/')
+            context = {}
+            return render(request, 'admin_account_add.html',context)
     else:
         return redirect('/')
+    
+def admin_account_update(request):
+    return
+
+def admin_account_delete(request):
+    return
 #AJAX
 def ajax_signin(request):
     response=HttpResponse()  
