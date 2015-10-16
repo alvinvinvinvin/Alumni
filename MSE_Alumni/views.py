@@ -450,10 +450,23 @@ def admin_account_update(request):
             response.write('0')
     else:
         return redirect('/')
-    return
 
 def admin_account_delete(request):
-    return
+    if 'user' in request.session and hasattr(request.session['user'], 'type'):
+        response=HttpResponse()  
+        response['Content-Type']="text/javascript"
+        if request.method == 'GET':
+            if 'account' not in request.GET:
+                response.write('0')
+            else:
+                user = User.objects.get(account=request.GET['account'])
+                user.delete()
+                response.write('1')
+        else:
+            response.write('2')
+       
+    else:
+        return redirect('/')
 #AJAX
 def ajax_signin(request):
     response=HttpResponse()  
