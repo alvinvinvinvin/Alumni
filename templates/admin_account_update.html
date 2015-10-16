@@ -7,50 +7,44 @@
 		<div>
 			<div>
 				<div class="programs">
-					<h2>Add Admin Account</h2>
+					<h2>Update Admin Account</h2>
 
 					<div class="application">
-						<h3>Add Admin Account</h3>
+						<h3>Update Admin Account</h3>
 						<form action="/admin_account_add/" method="post">
-							{% if message.message %}
-							<p>{{ message.message }}, please try another.</p>
-							{% endif %}
 							<div>
 								<table>
 									<tr>
 										<td><label for="account"><span>A</span>ccount:</label></td>
-										<td><input type="text" id="account" name="account"></td>
-										<td><h name="message_account"
-												style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal" /></td>
+										<td>{{ user.account }}</td>
 									</tr>
 									<tr>
 										<td><label for="password"><span>P</span>assword:</label></td>
 										<td><input type="text" id="password"
-											name="password"></td>
+											name="password" placeholder="{{ user.password }}"></td>
 										<td><h name="message_password"
 												style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal" /></td>
 									</tr>
 									<tr>
 										<td><label for="first_name"><span>F</span>irst
 												name:</label></td>
-										<td><input type="text" id="first_name" name="first_name"></td>
+										<td><input type="text" id="first_name" name="first_name" placeholder="{{ user.first_name }}"></td>
 										<td><h name="message_first_name"
 												style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal" /></td>
 									</tr>
 									<tr>
 										<td><label for="last_name"><span>L</span>ast
 												name:</label></td>
-										<td><input type="text" id="last_name" name="last_name"></td>
+										<td><input type="text" id="last_name" name="last_name" placeholder="{{ user.last_name }}"></td>
 										<td><h name="message_last_name"
 												style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal" /></td>
 									</tr>
 									<tr>
 								</table>
-								<input type="button" value="Add Account" id="searchbutton"
-									onclick="ajax_admin_account_add()"> 
+								<input type="button" value="Update Account" id="searchbutton"
+									onclick="ajax_admin_account_update()"> 
 								<input type="button" value="Cancel" id="searchbutton" onclick="javascript:history.go(-1);">
 							</div>
-
 						</form>
 					</div>
 				</div>

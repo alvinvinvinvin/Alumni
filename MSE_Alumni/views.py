@@ -409,20 +409,47 @@ def admin_account(request):
 #Add new admin account
 def admin_account_add(request):
     if 'user' in request.session and hasattr(request.session['user'], 'type'):
+        message = {}
         if request.method == 'POST':
-            new_account = User(account = request.POST['account'],\
-                                            password = request.POST['password'],\
-                                            first_name = request.POST['first_name'],\
-                                            last_name = request.POST['last_name'])
-            new_account.save()
-            return redirect('/admin_account/')
+            if len(User.objects.filter(account=request.POST['account'])) == 0:
+                new_account = User(account = request.POST['account'],\
+                                                password = request.POST['password'],\
+                                                first_name = request.POST['first_name'],\
+                                                last_name = request.POST['last_name'],\
+                                                type = '0')
+                new_account.save()
+                return redirect('/admin_account/')
+            else:
+                message['message'] = 'Account already existed.'
+                return render(request, 'admin_account_add.html',{'message':message})
         else:
-            context = {}
-            return render(request, 'admin_account_add.html',context)
+            return render(request, 'admin_account_add.html')
     else:
         return redirect('/')
     
 def admin_account_update(request):
+    if 'user' in request.session and hasattr(request.session['user'], 'type'):
+        message = {}
+        response=HttpResponse()  
+        response['Content-Type']="text/javascript"
+        if request.method == 'GET':
+            if 'account' not in request.GET:
+                message['message'] = 'please select one account first.'
+                return render(request,'admin_account.html',{'message':message})
+            else:
+                context = {}
+                user = User.objects.get(account=request.GET['account'])
+                context['user'] = user
+                return render(request,'admin_account_update.html',{'context':context})
+        elif request.method == 'POST':
+            User.objects.filter(id=request.POST['account']).update(password=request.POST['password'],\
+                                          first_name=request.POST['first_name'],\
+                                          last_name=request.POST['last_name'])
+            response.write('1')
+        else:
+            response.write('0')
+    else:
+        return redirect('/')
     return
 
 def admin_account_delete(request):
