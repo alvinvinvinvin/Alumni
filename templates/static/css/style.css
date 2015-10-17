@@ -2092,9 +2092,9 @@ td {
 
 /*------------------pagination-----------*/
 .body div div div div div .pagination {
-    padding: 20px;
-    margin-bottom: 20px;
-    width: 880px;
+/*     padding: 20px; */
+/*     margin-bottom: 20px; */
+/*     width: 880px; */
     height: inherit;
   	align-self: center;
   	align-items: center;

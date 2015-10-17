@@ -33,6 +33,7 @@ urlpatterns = patterns('',
     (r'^admin_account_add/', 'MSE_Alumni.views.admin_account_add'),
     (r'^admin_account_update/', 'MSE_Alumni.views.admin_account_update'),
     (r'^admin_account_delete/', 'MSE_Alumni.views.admin_account_delete'),
+    (r'^admin_account_search/', 'MSE_Alumni.views.admin_account_search'),
     (r'^admin_alumniprofile/$', 'MSE_Alumni.views.admin_view_profile'),
     
     (r'^ajax_signin/$', 'MSE_Alumni.views.ajax_signin'),

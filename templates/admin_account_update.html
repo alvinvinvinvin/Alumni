@@ -16,26 +16,33 @@
 								<table>
 									<tr>
 										<td><label for="account"><span>A</span>ccount:</label></td>
-										<td>{{ user.account }}</td>
+										<td><p id="account">{{ context.user.account }}</p></td>
 									</tr>
 									<tr>
-										<td><label for="password"><span>P</span>assword:</label></td>
-										<td><input type="text" id="password"
-											name="password" placeholder="{{ user.password }}"></td>
-										<td><h name="message_password"
+										<td><label for="passwordone">New <span>P</span>assword:</label></td>
+										<td><input type="password" id="passwordone"
+											name="passwordone" value="{{ context.user.password }}"></td>
+										<td><h name="message_passwordone"
+												style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal" /></td>
+									</tr>
+									<tr>
+										<td><label for="passwordtwo"><span>P</span>assword again:</label></td>
+										<td><input type="password" id="passwordtwo"
+											name="passwordtwo" value="{{ context.user.password }}"></td>
+										<td><h name="message_passwordtwo"
 												style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal" /></td>
 									</tr>
 									<tr>
 										<td><label for="first_name"><span>F</span>irst
 												name:</label></td>
-										<td><input type="text" id="first_name" name="first_name" placeholder="{{ user.first_name }}"></td>
+										<td><input type="text" id="first_name" name="first_name" value="{{ context.user.first_name }}"></td>
 										<td><h name="message_first_name"
 												style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal" /></td>
 									</tr>
 									<tr>
 										<td><label for="last_name"><span>L</span>ast
 												name:</label></td>
-										<td><input type="text" id="last_name" name="last_name" placeholder="{{ user.last_name }}"></td>
+										<td><input type="text" id="last_name" name="last_name" value="{{ context.user.last_name }}"></td>
 										<td><h name="message_last_name"
 												style="display:none;color:red;font-size:14px;text-transform:none;font-weight:normal" /></td>
 									</tr>

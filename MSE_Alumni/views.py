@@ -2,7 +2,7 @@
 from datetime import datetime
 import operator
 import re
-
+from django.db.models import CharField
 from django.core.mail import send_mail
 from django.core.mail.message import EmailMultiAlternatives
 from django.core.urlresolvers import reverse
@@ -16,6 +16,7 @@ from django.views.generic.edit import FormView
 from .models import Attachment
 from django.views.generic import ListView
 from django.core.context_processors import request
+from django.template.loader import render_to_string
 
 
 def home(request):
@@ -413,7 +414,7 @@ def admin_account_add(request):
         if request.method == 'POST':
             if len(User.objects.filter(account=request.POST['account'])) == 0:
                 new_account = User(account = request.POST['account'],\
-                                                password = request.POST['password'],\
+                                                password = request.POST['passwordone'],\
                                                 first_name = request.POST['first_name'],\
                                                 last_name = request.POST['last_name'],\
                                                 type = '0')
@@ -440,9 +441,10 @@ def admin_account_update(request):
                 context = {}
                 user = User.objects.get(account=request.GET['account'])
                 context['user'] = user
-                return render(request,'admin_account_update.html',{'context':context})
+                html = render(request,'admin_account_update.html',{'context':context})
+                return html
         elif request.method == 'POST':
-            User.objects.filter(id=request.POST['account']).update(password=request.POST['password'],\
+            User.objects.filter(account=request.POST['account']).update(password=request.POST['passwordone'],\
                                           first_name=request.POST['first_name'],\
                                           last_name=request.POST['last_name'])
             response.write('1')
@@ -450,16 +452,17 @@ def admin_account_update(request):
             response.write('0')
     else:
         return redirect('/')
+    return response
 
 def admin_account_delete(request):
     if 'user' in request.session and hasattr(request.session['user'], 'type'):
         response=HttpResponse()  
         response['Content-Type']="text/javascript"
-        if request.method == 'GET':
-            if 'account' not in request.GET:
+        if request.method == 'POST':
+            if 'account' not in request.POST:
                 response.write('0')
             else:
-                user = User.objects.get(account=request.GET['account'])
+                user = User.objects.get(account=request.POST['account'])
                 user.delete()
                 response.write('1')
         else:
@@ -467,6 +470,26 @@ def admin_account_delete(request):
        
     else:
         return redirect('/')
+    return response
+#admin account search
+def admin_account_search(request):
+    if 'user' in request.session and hasattr(request.session['user'], 'type'):
+        keywords = request.GET['text_search']
+        accounts = User.objects.filter(type = '0')
+        if keywords != '':
+            keyword = keywords.replace(" ","")
+            if keyword != "":
+                accounts = User.objects.filter(\
+                                            (Q(account__icontains = keyword) | Q(first_name__icontains = keyword) | Q(last_name__icontains = keyword))\
+                                             & Q(type = '0'))
+                return render(request, 'admin_account.html',{'accounts':accounts})
+            else:
+                return render(request, 'admin_account.html',{'accounts':accounts})
+        else:
+            return render(request, 'admin_account.html',{'accounts':accounts})
+    else:
+        return redirect('/')
+
 #AJAX
 def ajax_signin(request):
     response=HttpResponse()  
