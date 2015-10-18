@@ -2,6 +2,73 @@
 <title>MSE ALUMNI - REGISTER</title>
 {% endblock %} {% block content %}
 <!-- main part -->
+<script>
+$( document ).ready(function( $ ) {
+	data_picker();
+});
+
+function data_picker() {
+    $('.graduate_date').datepicker(
+                   {
+                       dateFormat: "yy-mm",
+                       changeMonth: true,
+                       changeYear: true,
+                       showButtonPanel: true,
+                       yearRange: "-100:+0",
+                       onClose: function(dateText, inst) {
+
+
+                           function isDonePressed(){
+                               return ($('#ui-datepicker-div').html().indexOf('ui-datepicker-close ui-state-default ui-priority-primary ui-corner-all ui-state-hover') > -1);
+                           }
+
+                           if (isDonePressed()){
+                               var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                               var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                               $(this).datepicker('setDate', new Date(year, month, 1)).trigger('change');
+                               
+                                $('.graduate_date').focusout()//Added to remove focus from datepicker input box on selecting date
+                           }
+                       },
+                       beforeShow : function(input, inst) {
+
+                           inst.dpDiv.addClass('month_year_datepicker')
+
+                           if ((datestr = $(this).val()).length > 0) {
+                               year = datestr.substring(datestr.length-4, datestr.length);
+                               month = datestr.substring(0, 2);
+                               $(this).datepicker('option', 'defaultDate', new Date(year, month-1, 1));
+                               $(this).datepicker('setDate', new Date(year, month-1, 1));
+                               $(".ui-datepicker-calendar").hide();
+                           }
+                       }
+                   });
+}
+
+// function data_picker(){
+// 	 $(".graduate_date").datepicker({
+// 	        dateFormat: 'MM yy',
+// 	        changeMonth: true,
+// 	        changeYear: true,
+// 	        showButtonPanel: true,
+
+// 	        onClose: function(dateText, inst) {
+// 	            var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+// 	            var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+// 	            $(this).val($.datepicker.formatDate('MM yy', new Date(year, month, 1)));
+// 	        }
+// 	    });
+
+// 	    $(".graduate_date").focus(function () {
+// 	        $(".ui-datepicker-calendar").hide();
+// 	        $("#ui-datepicker-div").position({
+// 	            my: "center top",
+// 	            at: "center bottom",
+// 	            of: $(this)
+// 	        });
+// 	    });
+// }
+</script>
 <div class="body">
 	<div class="register">
 		<div>
@@ -45,9 +112,9 @@
 								</tr>
 								
 								<tr>
-									<td><label for="graduate_date"><span>G</span>raduation
+									<td><label for="graduate_date_label"><span>G</span>raduation
 											<span>D</span>ate:</label></td>
-									<td><input type="month" id="graduate_date" name="graduate_date">
+									<td><input type="text" id="graduate_date" name="graduate_date" class="graduate_date">
 									<p name="message_graduate_date" style="display:none;color:red"/></td>
 								</tr>
 								<tr>

@@ -2148,3 +2148,7 @@ td {
     float: none !important;
 }
 
+.ui-datepicker-calendar {
+    display: none;
+}
+
