@@ -497,7 +497,6 @@ function ajax_admin_account_update(){
 				}
 			}
 		);
-//		document.forms[0].submit();
 	}
 	
 }
