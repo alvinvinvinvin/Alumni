@@ -2,6 +2,9 @@
 <title>MSE ALUMNI - REGISTER</title>
 {% endblock %} {% block content %}
 <!-- main part -->
+<style>
+.ui-datepicker-next,.ui-datepicker-prev{display:none;}
+</style>
 <script>
 $( document ).ready(function( $ ) {
 	data_picker();
@@ -14,6 +17,7 @@ function data_picker() {
                        changeMonth: true,
                        changeYear: true,
                        showButtonPanel: true,
+                       hideIfNoPrevNext: true,
                        yearRange: "-100:+0",
                        onClose: function(dateText, inst) {
 
