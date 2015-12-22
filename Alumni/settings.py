@@ -59,7 +59,9 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = 'C:/workspace/Alumni/templates/media'
+#MEDIA_ROOT = 'C:/workspace/Alumni/templates/media'
+# For mac OS X
+MEDIA_ROOT = '/Users/hanchen/Documents/Alumni/templates/media'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -82,6 +84,8 @@ STATICFILES_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     'C:/workspace/Alumni/templates/static/',
+    # For mac OS X
+    '/Users/hanchen/Documents/Alumni/templates/static/',
 )
 
 # List of finder classes that know how to find static files in
@@ -126,6 +130,8 @@ WSGI_APPLICATION = 'Alumni.wsgi.application'
 
 TEMPLATE_DIRS = (
     ('C:/workspace/Alumni/templates'),
+    # For mac OS X
+    ('/Users/hanchen/Documents/Alumni/templates'),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
