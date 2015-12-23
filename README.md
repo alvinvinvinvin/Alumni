@@ -38,6 +38,7 @@ Modify “settings.py” in “Alumni\Alumni” directory to make this project c
 #MAC OSX
 
 First of all, be prepared to face dozens of tricky problems. They might take your days to figure out how to successfully running your Django project on MAC OSX environment. I didn’t write down all of them here because I forgot 80% of what problems you would face and what the solutions are. Just use google and you will find a lot of answers. However, trying out which answer is correct for your case will take the most time you spend on that. Just be prepared, be confident and be patient, you can finally make it running!
+
 1. In terminal, run “pip install Pillow” to install “PIL” similar in Windows.
 2. Run “pip install MySQL-python”. If you encountered problems relating to MySQL here, try to uninstall your MySQL first, and run “brew install mysql”.
 3. In root directory of “Alumn” project (where “manage.py” belongs to), run “python manage.py syncdb” to synchronize your database scheme with project models. It only works when the “mse_alumn” scheme we created earlier is empty, so if you had any historical data in that, backup, clear it, and run this command again.
