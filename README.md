@@ -5,11 +5,9 @@ I pushed this project in github only for maintaining convenience.
 Han Chen
 3/20/2015
 
-====================
- Deployment Guide
-====================
+#Deployment Guide
 
-IMPORTANT
+#IMPORTANT
 
 To ensure that everything works together compatibly, please use 32-bit version for all software, tools, libraries, and so on, no matter which version of Operating system you are using.
 
